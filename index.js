@@ -1,4 +1,4 @@
-// Play sounds when a drum button is clicked
+// Detect mouse clicks
 for(var i = 0; i < document.querySelectorAll(".drum").length; i++) {
     document.querySelectorAll(".drum")[i].addEventListener("click", function() {
         //TEST: alert("I got clicked!");
@@ -7,16 +7,19 @@ for(var i = 0; i < document.querySelectorAll(".drum").length; i++) {
         var buttonInnerHTML = this.innerHTML;
 
         makeSound(buttonInnerHTML);
+
+        buttonAnimation(buttonInnerHTML);
     });
 }
 
-// Play sounds when keyboard key is pressed
+// Detect keyboard presses
 document.addEventListener("keydown", function(event) {
-    //TEST: alert("Key was pressed!");
+    makeSound(event.key);
 
-    makeSound(event.key)
+    buttonAnimation(event.key);
 });
 
+// Play a different sound for each drum button
 function makeSound(key) {
 
     switch (key) {
@@ -55,10 +58,17 @@ function makeSound(key) {
             crash.play();
             break;
 
-        default: console.log(buttonInnerHTML)
+        default: console.log(buttonInnerHTML);
     }
 }
 
+// Animation for the drum buttons
+function buttonAnimation(currentKey) {
+    var activeButton = document.querySelector("." + currentKey);
 
+    activeButton.classList.add("pressed");
 
-        // this.style.color = "white";
+    setTimeout(function() {
+        activeButton.classList.remove("pressed");
+    }, 100);
+}
