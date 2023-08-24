@@ -1,5 +1,5 @@
 # Drum-Kit
-A local website that simulates a drum.
+A website that simulates a drum.
 
 Guide:
 Navigate to deployments and open the link to view the drum kit.
